@@ -25,22 +25,12 @@ class Sprite {
     }
 
     draw() {
-        c!.drawImage(this.image, -100, -520)
+        c!.drawImage(this.image, this.position.x, this.position.y)
     }
 }
 
-const background = new Sprite({ x: -100, y: -520 }, 'hi', bgImage)
-
-
-
-function animate() {
-    background.draw()
-    window.requestAnimationFrame(animate)
-    // console.log('animate');
-    c?.drawImage(playerImage, (canvas.width / 2) - playerImage.width, 375)
-}
-animate()
-
+const background = new Sprite({ x: -1000, y: -520 }, 'hi', bgImage)
+const player = new Sprite({ x: (canvas.width / 2) - playerImage.width, y: 375 }, 'hi', playerImage)
 
 const keys = {
     left: false,
@@ -50,15 +40,48 @@ const keys = {
     space: false
 }
 
+
+
+function animate() {
+    background.draw()
+    window.requestAnimationFrame(animate)
+    // console.log('animate');
+    // c?.drawImage(playerImage, (canvas.width / 2) - playerImage.width, 375)
+    player.draw()
+
+    if (background.position.x < 0 && background.position.x > -1900) {
+        if (keys.left) background.position.x += 3
+        else if (keys.right) background.position.x -= 3
+
+    } else {
+        if (player.position.x > canvas.width / 2 - player.image.width / 2 &&
+            !keys.left &&
+            background.position.x > -500) {
+            background.position.x -= 3
+        } else if (player.position.x < canvas.width / 2 - player.image.width / 2 &&
+            !keys.right &&
+            background.position.x < -1000) {
+            background.position.x += 3
+        }
+        else if (keys.left && player.position.x > 0) player.position.x -= 3
+        else if (keys.right && player.position.x < 900) player.position.x += 3
+    }
+    console.log(background.position.x);
+    console.log(player.position.x, canvas.width / 2 - player.image.width / 2);
+
+}
+animate()
+
+
+
+
 document.addEventListener('keydown', (e) => {
     // console.log(e.key);
 
     switch (e.key) {
         case 'ArrowLeft':
-            console.log('left');
             keys.left = true
         case "ArrowRight":
-            console.log('right');
             keys.right = true
         case "UpArrow":
             keys.up = true
@@ -72,13 +95,10 @@ document.addEventListener('keydown', (e) => {
 
 document.addEventListener('keyup', (e) => {
     // console.log(e.key);
-
     switch (e.key) {
         case 'ArrowLeft':
-            console.log('left');
             keys.left = false
         case "ArrowRight":
-            console.log('right');
             keys.right = false
         case "UpArrow":
             keys.up = false
