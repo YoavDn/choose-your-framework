@@ -29,8 +29,49 @@ class Sprite {
     }
 }
 
+class Player {
+    position: positionType
+    isMoving: boolean
+    image: HTMLImageElement
+    frames: { max: number, val: number, elapsed: number }
+    constructor(pos: positionType, image: HTMLImageElement, frames = { max: 1, val: 0, elapsed: 0 }) {
+        this.position = pos
+        this.image = image
+        this.frames = frames
+        this.isMoving = false
+    }
+
+    draw() {
+        c!.drawImage(
+            this.image,
+            64 * this.frames.val,
+            0,
+            this.image.width / 6,
+            this.image.height,
+            this.position.x,
+            this.position.y,
+            this.image.width / 6,
+            this.image.height
+        )
+        if (!this.isMoving) return
+
+        if (this.frames.max > 1) {
+            this.frames.elapsed++
+        }
+
+        if (this.frames.elapsed % 10 === 0) {
+            if (this.frames.val < this.frames.max - 1) this.frames.val++
+            else this.frames.val = 0
+        }
+    }
+}
+
+
 const background = new Sprite({ x: -1000, y: -520 }, 'hi', bgImage)
-const player = new Sprite({ x: (canvas.width / 2) - playerImage.width, y: 375 }, 'hi', playerImage)
+const player = new Player(
+    { x: (canvas.width / 2) - playerImage.width, y: 375 },
+    playerImage,
+    { max: 5, val: 0, elapsed: 0 })
 
 const keys = {
     left: false,
@@ -66,8 +107,8 @@ function animate() {
         else if (keys.left && player.position.x > 0) player.position.x -= 3
         else if (keys.right && player.position.x < 900) player.position.x += 3
     }
-    console.log(background.position.x);
-    console.log(player.position.x, canvas.width / 2 - player.image.width / 2);
+    // console.log(background.position.x);
+    // console.log(player.position.x, canvas.width / 2 - player.image.width / 2);
 
 }
 animate()
@@ -81,8 +122,10 @@ document.addEventListener('keydown', (e) => {
     switch (e.key) {
         case 'ArrowLeft':
             keys.left = true
+            player.isMoving = true
         case "ArrowRight":
             keys.right = true
+            player.isMoving = true
         case "UpArrow":
             keys.up = true
         case "DownArrow":
@@ -98,8 +141,10 @@ document.addEventListener('keyup', (e) => {
     switch (e.key) {
         case 'ArrowLeft':
             keys.left = false
+            player.isMoving = false
         case "ArrowRight":
             keys.right = false
+            player.isMoving = false
         case "UpArrow":
             keys.up = false
         case "DownArrow":
