@@ -1,8 +1,9 @@
 import './style.css'
+import { playerStand } from './ts/character'
+import { Sprite, Player } from './ts/classes'
+export const canvas = document.getElementById('canvas') as HTMLCanvasElement
 
-const canvas = document.getElementById('canvas') as HTMLCanvasElement
-
-const c = canvas.getContext('2d')
+export const c = canvas.getContext('2d')
 
 canvas.width = 960
 canvas.height = 680
@@ -12,87 +13,9 @@ c?.fillRect(0, 0, canvas.width, canvas.height)
 const bgImage = new Image()
 bgImage.src = "./src/assets/game-map.png"
 
-// player images
-const playerWalk = new Image()
-playerWalk.src = './src/assets/player-walk.png'
-
-const playerWalkLeft = new Image()
-playerWalkLeft.src = './src/assets/player-walk-left.png'
-
-const playerStand = new Image()
-playerStand.src = './src/assets/player-stand.png'
-
-const playerStandLeft = new Image()
-playerStandLeft.src = './src/assets/player-stand-left.png'
 
 
-type positionType = { x: number, y: number }
-
-class Sprite {
-    position: positionType;
-    image: HTMLImageElement
-    constructor(pos: positionType, velocity: any, image: HTMLImageElement) {
-        this.position = pos
-        this.image = image
-    }
-
-    draw() {
-        c!.drawImage(this.image, this.position.x, this.position.y)
-    }
-}
-
-class Player {
-    position: positionType
-    isMoving: boolean
-    image: HTMLImageElement
-    frames: { max: number, val: number, elapsed: number }
-    sprites: { walk: HTMLImageElement, stand: HTMLImageElement, walkLeft: HTMLImageElement, standLeft: HTMLImageElement }
-
-    constructor(pos: positionType, image: HTMLImageElement, frames = { max: 1, val: 0, elapsed: 0 }) {
-        this.position = pos
-        this.image = image
-        this.frames = frames
-        this.isMoving = false
-        this.sprites = {
-            stand: playerStand,
-            standLeft: playerStandLeft,
-            walk: playerWalk,
-            walkLeft: playerWalkLeft
-        }
-    }
-
-    draw() {
-        this.isMoving ? c!.drawImage(
-            this.image,
-            64 * this.frames.val,
-            0,
-            this.image.width / 6,
-            this.image.height,
-            this.position.x,
-            this.position.y,
-            this.image.width / 6,
-            this.image.height
-        ) : c!.drawImage(
-            this.image,
-            this.position.x,
-            this.position.y
-        )
-
-        if (!this.isMoving) return
-
-        if (this.frames.max > 1) {
-            this.frames.elapsed++
-        }
-
-        if (this.frames.elapsed % 10 === 0) {
-            if (this.frames.val < this.frames.max - 1) this.frames.val++
-            else this.frames.val = 0
-        }
-    }
-}
-
-
-const background = new Sprite({ x: -1000, y: -520 }, 'hi', bgImage)
+const background = new Sprite({ x: -100, y: -520 }, 'hi', bgImage)
 const player = new Player(
     { x: (canvas.width / 2) - playerStand.width / 2, y: 375 },
     playerStand,
@@ -174,12 +97,12 @@ document.addEventListener('keyup', (e) => {
             player.isMoving = false
             keys.left = false
             player.image = player.sprites.standLeft
-            console.log('fuck');
+
             break
         case "ArrowRight":
             player.isMoving = false
             keys.right = false
-            console.log('fuck');
+
 
             player.image = player.sprites.stand
             break
