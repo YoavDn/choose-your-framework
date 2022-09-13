@@ -2,6 +2,7 @@ import './style.css'
 import { playerStand } from './ts/character'
 import { Sprite, Player } from './ts/classes'
 import { portals, } from './ts/portals'
+
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement
 
 export const c = canvas.getContext('2d')
@@ -14,8 +15,6 @@ c?.fillRect(0, 0, canvas.width, canvas.height)
 
 const bgImage = new Image()
 bgImage.src = "./src/assets/game-map.png"
-
-// portals[1].draw()
 
 
 const background = new Sprite({ x: -100, y: -520 }, 'hi', bgImage)
@@ -47,7 +46,7 @@ function animate() {
     })) {
         console.log('on');
         const currPortal = portals.find(portal => portal.position.x > 400 && portal.position.x < 464)
-        if (keys.up) openPopup(currPortal?.title)
+        if (keys.up) openPopup(currPortal!.title)
     }
 
     /// borders logic
@@ -98,9 +97,9 @@ document.addEventListener('keydown', (e) => {
             keys.right = true
             player.image = player.sprites.walk
             break
-        case "UpArrow":
-            keys.up = false
-        case "DownArrow":
+        case "ArrowUp":
+            keys.up = true
+        case "ArrowDown":
             keys.down = false
         case "Space":
             keys.space = false
@@ -109,7 +108,7 @@ document.addEventListener('keydown', (e) => {
 })
 
 document.addEventListener('keyup', (e) => {
-
+    console.log(e.key);
     switch (e.key) {
         case 'ArrowLeft':
             player.isMoving = false
@@ -124,9 +123,9 @@ document.addEventListener('keyup', (e) => {
 
             player.image = player.sprites.stand
             break
-        case "UpArrow":
+        case "ArrowUp":
             keys.up = false
-        case "DownArrow":
+        case "ArrowUp":
             keys.down = false
         case "Space":
             keys.space = false
@@ -136,5 +135,42 @@ document.addEventListener('keyup', (e) => {
 
 
 function openPopup(title: string) {
-
+    const popupEl = document.querySelector('.popup') as HTMLDivElement
+    // const spanTitleEl = document.querySelector('.span-title') as HTMLDivElement
+    document.querySelector<HTMLSpanElement>('.span-title')!.innerText = title
+    document.querySelector<HTMLImageElement>('.popup-img')!.src = `./src/assets/framework-imgs/${title.toLowerCase()}js.png`
+    document.querySelector<HTMLButtonElement>('.to-website-btn')!.style.color = `var(--${title.toLowerCase()}-clr)`
+    popupEl.classList.remove('hidden')
 }
+
+
+
+document.querySelector('.cancel-btn')?.addEventListener('click', (e) => {
+    const popupEl = document.querySelector('.popup') as HTMLDivElement
+    popupEl.classList.add('hidden')
+})
+
+document.querySelector<HTMLButtonElement>('.to-website-btn')?.addEventListener('click', (e) => {
+    const framework = document.querySelector<HTMLSpanElement>('.span-title')!.innerText
+    document.querySelector('.popup')?.classList.add('hidden')
+
+
+    switch (framework) {
+        case 'React':
+            // window.open('google.com')
+            console.log('react');
+            break
+        case 'Vue':
+            console.log('vue');
+            break
+        case 'Svelte':
+            console.log('svelte');
+            break
+        case 'Solid':
+            console.log('solid');
+            break
+        case 'Angular':
+            console.log('Angular');
+
+    }
+})

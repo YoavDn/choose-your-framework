@@ -63,14 +63,14 @@ portalsMat.forEach((row, i) => {
 function titleHelper(tileNum: number): string {
     switch (tileNum) {
         case 205:
-            return 'react'
+            return 'React'
         case 204:
-            return 'vue'
+            return 'Vue'
         case 203:
-            return 'svelte'
+            return 'Svelte'
         case 202:
-            return 'solid'
+            return 'Solid'
         case 201:
-            return 'angular'
+            return 'Angular'
     }
 }   
