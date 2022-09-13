@@ -41,6 +41,14 @@ function animate() {
     portals.forEach(portal => portal.draw())
     player.draw()
 
+    //check if on portal 
+    if (portals.some(portal => {
+        return portal.position.x > 400 && portal.position.x < 464
+    })) {
+        console.log('on');
+        const currPortal = portals.find(portal => portal.position.x > 400 && portal.position.x < 464)
+        if (keys.up) openPopup(currPortal?.title)
+    }
 
     /// borders logic
     if (background.position.x < 0 && background.position.x > -1900) {
@@ -66,7 +74,8 @@ function animate() {
         else if (keys.left && player.position.x > 0) player.position.x -= 3
         else if (keys.right && player.position.x < 900) player.position.x += 3
     }
-    // console.log(keys);
+    // console.log(background.position.x);
+    // console.log(portals[2].position.x);
 
 
 }
@@ -76,7 +85,7 @@ animate()
 
 
 document.addEventListener('keydown', (e) => {
-    console.log(e.key);
+    // console.log(e.key);
 
     switch (e.key) {
         case 'ArrowLeft':
@@ -100,7 +109,7 @@ document.addEventListener('keydown', (e) => {
 })
 
 document.addEventListener('keyup', (e) => {
-    console.log(e.key, 'hsit');
+
     switch (e.key) {
         case 'ArrowLeft':
             player.isMoving = false
@@ -124,3 +133,8 @@ document.addEventListener('keyup', (e) => {
 
     }
 })
+
+
+function openPopup(title: string) {
+
+}

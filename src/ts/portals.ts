@@ -39,7 +39,7 @@ export class Portal {
     }
 
     draw() {
-        c!.fillStyle = 'red'
+        c!.fillStyle = 'transparent'
         c?.fillRect(this.position.x, this.position.y, this.width, this.height)
     }
 }
@@ -47,7 +47,6 @@ export class Portal {
 export const portals: Portal[] = []
 portalsMat.forEach((row, i) => {
     row.forEach((tile, j) => {
-        console.log(j, 'hello');
         if (206 > tile && tile > 200) {
             portals.push(new Portal({
                 // x: i * -Portal.width - 100,

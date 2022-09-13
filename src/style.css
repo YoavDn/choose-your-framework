@@ -4,6 +4,20 @@
   box-sizing: border-box;
 }
 
+:root {
+  --react-clr: #61DAFB;
+  --vue-clr: #41B883;
+  --svelte-clr: #FF3E00;
+  --solid-clr: #5088C7;
+  --angular-clr: #DD0031;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700&display=swap');
+
+html {
+  font-family: 'Open Sans', sans-serif;
+}
+
 body {
   height: 100vh;
   background-color: black;
@@ -15,4 +29,65 @@ body {
   margin: auto;
   justify-content: center;
   border-radius: 10px;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.popup {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  position: absolute;
+  top: 30%;
+  padding: 2rem;
+  border-radius: 10px;
+  left: 50%;
+  z-index: 20;
+  background-color: white;
+  box-shadow: 2px 1px 10px black;
+  transform: translate(-50%, -50%);
+
+}
+
+.popup img {
+  height: 110px;
+  width: auto;
+}
+
+.popup-title {
+  line-height: 1em;
+  padding-bottom: 10px;
+}
+
+.popup-desc {
+  padding-bottom: 20px;
+}
+
+button {
+  cursor: pointer;
+  padding: .3rem;
+  background-color: transparent;
+  /* border: solid 1px black; */
+
+  font-size: 1rem;
+  border: none;
+}
+
+.to-website-btn {
+  font-weight: 700;
+
+  color: var(--vue-clr)
+}
+
+.to-website-btn:hover {
+  text-decoration: underline;
 }
