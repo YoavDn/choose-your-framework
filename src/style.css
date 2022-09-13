@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -12,7 +14,6 @@
   --angular-clr: #DD0031;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;500;600;700&display=swap');
 
 html {
   font-family: 'Open Sans', sans-serif;
@@ -185,7 +186,7 @@ button {
 }
 
 .summery .footer {
-  font-size: 1rem;
+  font-size: rem;
   padding: 2rem;
   text-align: center;
 }

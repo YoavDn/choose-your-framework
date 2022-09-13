@@ -1,4 +1,4 @@
-import './style.css'
+// import './style.css'
 import { playerStand } from './ts/character'
 import { Sprite, Player } from './ts/classes'
 import { portals, } from './ts/portals'
@@ -15,7 +15,7 @@ c!.fillStyle = 'white'
 c?.fillRect(0, 0, canvas.width, canvas.height)
 
 const bgImage = new Image()
-bgImage.src = "./src/assets/game-map.png"
+bgImage.src = "/src/assets/game-map.png"
 
 
 const background = new Sprite({ x: -100, y: -520 }, bgImage)
@@ -118,8 +118,6 @@ document.addEventListener('keyup', (e) => {
             break
         case "ArrowUp":
             keys.up = false
-        case "ArrowUp":
-            keys.down = false
         case "Space":
             keys.space = false
 
