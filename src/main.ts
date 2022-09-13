@@ -6,7 +6,7 @@ import { portals, } from './ts/portals'
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement
 
 export const c = canvas.getContext('2d')
-console.log(portals);
+
 
 canvas.width = window.innerWidth > 600 ? 960 : 360
 canvas.height = window.innerWidth > 600 ? 680 : 480
@@ -46,7 +46,6 @@ function animate() {
         return window.innerWidth > 600 ? portal.position.x > 430 && portal.position.x < 500
             : portal.position.x > 130 && portal.position.x < 200
     })) {
-        console.log('on');
         const currPortal = portals.find(portal => {
             return window.innerWidth > 600
                 ? portal.position.x > 430 && portal.position.x < 500
@@ -79,9 +78,8 @@ function animate() {
         else if (keys.left && player.position.x > 0) player.position.x -= 3
         else if (keys.right && player.position.x < 900) player.position.x += 3
     }
-    console.log(background.position.x);
+    // console.log(background.position.x);
     // console.log(portals[0].position.x);
-
 
 }
 animate()

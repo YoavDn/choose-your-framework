@@ -19,7 +19,6 @@ html {
 }
 
 body {
-
   background-color: black;
 }
 
@@ -167,6 +166,30 @@ button {
   display: none;
 }
 
+.summery {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: auto minmax(0, 960px) auto;
+  color: white;
+}
+
+.summery h2 {
+  grid-column: 2;
+  margin-bottom: 2.2rem;
+}
+
+.summery p {
+  grid-column: 2;
+  letter-spacing: .04em;
+  font-size: 1.2rem;
+}
+
+.summery .footer {
+  font-size: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   .popup {
     flex-direction: column;
@@ -207,7 +230,6 @@ button {
   }
 
   .mobile-controls button {
-
     width: 100px;
     height: 50px;
     font-size: 1.4rem;
@@ -216,5 +238,11 @@ button {
     justify-content: center;
 
     border: solid 1px white
+  }
+
+  .summery {
+    display: grid;
+    grid-template-columns: auto minmax(0, 360px) auto;
+    color: white;
   }
 }
