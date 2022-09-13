@@ -18,7 +18,7 @@ const bgImage = new Image()
 bgImage.src = "./src/assets/game-map.png"
 
 
-const background = new Sprite({ x: -100, y: -520 }, 'hi', bgImage)
+const background = new Sprite({ x: -100, y: -520 }, bgImage)
 const player = new Player(
     { x: (canvas.width / 2) - playerStand.width / 2, y: 375 },
     playerStand,
@@ -163,12 +163,12 @@ function openPopup(title: string) {
 
 
 
-document.querySelector('.cancel-btn')?.addEventListener('click', (e) => {
+document.querySelector('.cancel-btn')?.addEventListener('click', () => {
     const popupEl = document.querySelector('.popup') as HTMLDivElement
     popupEl.classList.add('hidden')
 })
 
-document.querySelector<HTMLButtonElement>('.to-website-btn')?.addEventListener('click', (e) => {
+document.querySelector<HTMLButtonElement>('.to-website-btn')?.addEventListener('click', () => {
     const framework = document.querySelector<HTMLSpanElement>('.span-title')!.innerText
     document.querySelector('.popup')?.classList.add('hidden')
 

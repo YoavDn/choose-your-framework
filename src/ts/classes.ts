@@ -5,7 +5,7 @@ type positionType = { x: number, y: number }
 export class Sprite {
     position: positionType;
     image: HTMLImageElement
-    constructor(pos: positionType, velocity: any, image: HTMLImageElement) {
+    constructor(pos: positionType, image: HTMLImageElement) {
         this.position = pos
         this.image = image
     }

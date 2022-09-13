@@ -60,7 +60,7 @@ portalsMat.forEach((row, i) => {
     })
 })
 
-function titleHelper(tileNum: number): string {
+function titleHelper(tileNum: number) {
     switch (tileNum) {
         case 205:
             return 'React'
@@ -72,5 +72,7 @@ function titleHelper(tileNum: number): string {
             return 'Solid'
         case 201:
             return 'Angular'
+        default:
+            return ' '
     }
 }   
