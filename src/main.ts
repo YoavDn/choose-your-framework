@@ -3,13 +3,9 @@ import { playerStand } from './ts/character'
 import { Sprite, Player } from './ts/classes'
 import { portals, } from './ts/portals'
 
-const bgImage = new Image()
-bgImage.src = "/src/assets/game-map.png"
-
 const canvas = document.getElementById('canvas') as HTMLCanvasElement
 export let c = canvas.getContext('2d')
 
-bgImage.onload = () => c = canvas.getContext('2d')
 
 canvas.width = window.innerWidth > 600 ? 960 : 360
 canvas.height = window.innerWidth > 600 ? 680 : 480
@@ -17,6 +13,9 @@ canvas.height = window.innerWidth > 600 ? 680 : 480
 c!.fillStyle = 'white'
 c?.fillRect(0, 0, canvas.width, canvas.height)
 
+
+const bgImage = new Image()
+bgImage.src = "./src/assets/game-map.png"
 
 
 const background = new Sprite({ x: -100, y: -520 }, bgImage)
