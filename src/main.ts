@@ -1,9 +1,11 @@
 import './style.css'
 import { playerStand } from './ts/character'
 import { Sprite, Player } from './ts/classes'
+import { portals, } from './ts/portals'
 export const canvas = document.getElementById('canvas') as HTMLCanvasElement
 
 export const c = canvas.getContext('2d')
+console.log(portals);
 
 canvas.width = 960
 canvas.height = 680
@@ -13,6 +15,7 @@ c?.fillRect(0, 0, canvas.width, canvas.height)
 const bgImage = new Image()
 bgImage.src = "./src/assets/game-map.png"
 
+// portals[1].draw()
 
 
 const background = new Sprite({ x: -100, y: -520 }, 'hi', bgImage)
@@ -20,6 +23,7 @@ const player = new Player(
     { x: (canvas.width / 2) - playerStand.width / 2, y: 375 },
     playerStand,
     { max: 5, val: 0, elapsed: 0 })
+
 
 const keys = {
     left: false,
@@ -34,15 +38,20 @@ const keys = {
 function animate() {
     background.draw()
     window.requestAnimationFrame(animate)
-    // console.log('animate');
-    // c?.drawImage(playerImage, (canvas.width / 2) - playerImage.width, 375)
+    portals.forEach(portal => portal.draw())
     player.draw()
 
 
     /// borders logic
     if (background.position.x < 0 && background.position.x > -1900) {
-        if (keys.left) background.position.x += 3
-        else if (keys.right) background.position.x -= 3
+        if (keys.left) {
+            background.position.x += 3
+            portals.forEach(portal => portal.position.x += 3)
+        }
+        else if (keys.right) {
+            background.position.x -= 3
+            portals.forEach(portal => portal.position.x -= 3)
+        }
 
     } else {
         if (player.position.x > canvas.width / 2 - player.sprites.stand.width / 2 &&
