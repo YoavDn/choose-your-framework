@@ -144,7 +144,7 @@ function openPopup(title: string) {
     const popupEl = document.querySelector('.popup') as HTMLDivElement
     document.querySelector<HTMLSpanElement>('.span-title')!.innerText = title
     document.querySelector<HTMLImageElement>('.popup-img')!.src = `./src/assets/framework-imgs/${title.toLowerCase()}js.png`
-    document.querySelector<HTMLButtonElement>('.to-website-btn')!.style.color = `var(--${title.toLowerCase()}-clr)`
+    document.querySelector<HTMLButtonElement>('.to-website-btn')!.style.backgroundColor = `var(--${title.toLowerCase()}-clr)`
     document.querySelector<HTMLParagraphElement>('.popup-desc')!.innerText = popupDesc(title)
     popupEl.classList.remove('hidden')
 }

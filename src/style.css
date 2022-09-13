@@ -29,7 +29,6 @@ body {
   display: block;
   margin: auto;
   margin-top: 3rem;
-  border-radius: 10px;
   position: relative;
 
 }
@@ -52,6 +51,7 @@ body {
 .hidden {
   opacity: 0;
   visibility: hidden;
+  /* display: none !important; */
 }
 
 img {
@@ -62,8 +62,10 @@ img {
 
 .popup {
   display: flex;
+  /* display: none; */
   width: 500px;
   gap: 1rem;
+  color: white;
   align-items: center;
   justify-content: space-between;
   position: absolute;
@@ -72,8 +74,6 @@ img {
   border-radius: 10px;
   left: 50%;
   z-index: 20;
-  background-color: white;
-  box-shadow: 2px 1px 10px black;
   transform: translate(-50%, -50%);
 
 }
@@ -95,6 +95,7 @@ img {
 button {
   cursor: pointer;
   padding: .3rem;
+  color: white;
   background-color: transparent;
   /* border: solid 1px black; */
 
@@ -104,11 +105,62 @@ button {
 
 .to-website-btn {
   font-weight: 700;
-  color: var(--vue-clr)
+  color: white;
+  background-color: rgba(255, 255, 255, 0.439);
+  padding-inline: 1rem;
+  border-radius: 4px;
 }
 
 .to-website-btn:hover {
   text-decoration: underline;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.help-popup {
+  position: absolute;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  padding: 1rem;
+  width: 300px;
+}
+
+.help-popup button {
+  position: absolute;
+  top: -10px;
+  right: 10px;
+  font-size: 2rem;
+  transition: all .2s ease;
+}
+
+.help-popup button:hover {
+  color: lightgray
+}
+
+.controls-title {
+  margin-bottom: 2rem;
+}
+
+.controlls-container {
+  width: 100%;
+  display: flex;
+  gap: 2rem;
+
+  align-items: center;
+  justify-content: space-between;
 }
 
 @media (max-width: 600px) {
@@ -130,5 +182,9 @@ button {
 
   .popup img {
     height: 50px;
+  }
+
+  .controlls-container {
+    flex-direction: column;
   }
 }
