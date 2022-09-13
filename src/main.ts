@@ -8,8 +8,9 @@ export const canvas = document.getElementById('canvas') as HTMLCanvasElement
 export const c = canvas.getContext('2d')
 console.log(portals);
 
-canvas.width = 960
-canvas.height = 680
+canvas.width = window.innerWidth > 600 ? 960 : 360
+canvas.height = window.innerWidth > 600 ? 680 : 480
+
 c!.fillStyle = 'white'
 c?.fillRect(0, 0, canvas.width, canvas.height)
 
@@ -42,15 +43,20 @@ function animate() {
 
     //check if on portal 
     if (portals.some(portal => {
-        return portal.position.x > 400 && portal.position.x < 464
+        return window.innerWidth > 600 ? portal.position.x > 430 && portal.position.x < 500
+            : portal.position.x > 130 && portal.position.x < 200
     })) {
         console.log('on');
-        const currPortal = portals.find(portal => portal.position.x > 400 && portal.position.x < 464)
+        const currPortal = portals.find(portal => {
+            return window.innerWidth > 600
+                ? portal.position.x > 430 && portal.position.x < 500
+                : portal.position.x > 130 && portal.position.x < 200
+        })
         if (keys.up) openPopup(currPortal!.title)
     }
 
     /// borders logic
-    if (background.position.x < 0 && background.position.x > -1900) {
+    if (background.position.x < 0 && background.position.x > (window.innerWidth > 600 ? -1900 : -2400)) {
         if (keys.left) {
             background.position.x += 3
             portals.forEach(portal => portal.position.x += 3)
@@ -73,8 +79,8 @@ function animate() {
         else if (keys.left && player.position.x > 0) player.position.x -= 3
         else if (keys.right && player.position.x < 900) player.position.x += 3
     }
-    // console.log(background.position.x);
-    // console.log(portals[2].position.x);
+    console.log(background.position.x);
+    // console.log(portals[0].position.x);
 
 
 }

@@ -19,16 +19,34 @@ html {
 }
 
 body {
-  height: 100vh;
+
   background-color: black;
-  display: flex;
-  align-items: center;
 }
 
+
+
 #canvas {
+  display: block;
   margin: auto;
-  justify-content: center;
+  margin-top: 3rem;
   border-radius: 10px;
+  position: relative;
+
+}
+
+.help-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 7%;
+
+  right: 50%;
+  transform: translateX(50%);
+  z-index: 4;
+  border: solid 1px white;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  color: white;
 }
 
 .hidden {
@@ -44,8 +62,10 @@ img {
 
 .popup {
   display: flex;
+  width: 500px;
   gap: 1rem;
   align-items: center;
+  justify-content: space-between;
   position: absolute;
   top: 30%;
   padding: 2rem;
@@ -89,4 +109,26 @@ button {
 
 .to-website-btn:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  .popup {
+    flex-direction: column;
+    width: 300px;
+
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .popup-desc {
+    text-align: center;
+  }
+
+  .popup img {
+    height: 50px;
+  }
 }
