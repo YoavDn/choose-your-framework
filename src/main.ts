@@ -136,10 +136,10 @@ document.addEventListener('keyup', (e) => {
 
 function openPopup(title: string) {
     const popupEl = document.querySelector('.popup') as HTMLDivElement
-    // const spanTitleEl = document.querySelector('.span-title') as HTMLDivElement
     document.querySelector<HTMLSpanElement>('.span-title')!.innerText = title
     document.querySelector<HTMLImageElement>('.popup-img')!.src = `./src/assets/framework-imgs/${title.toLowerCase()}js.png`
     document.querySelector<HTMLButtonElement>('.to-website-btn')!.style.color = `var(--${title.toLowerCase()}-clr)`
+    document.querySelector<HTMLParagraphElement>('.popup-desc')!.innerText = popupDesc(title)
     popupEl.classList.remove('hidden')
 }
 
@@ -154,23 +154,29 @@ document.querySelector<HTMLButtonElement>('.to-website-btn')?.addEventListener('
     const framework = document.querySelector<HTMLSpanElement>('.span-title')!.innerText
     document.querySelector('.popup')?.classList.add('hidden')
 
-
     switch (framework) {
         case 'React':
-            // window.open('google.com')
-            console.log('react');
+            window.open('https://reactjs.org/')
             break
         case 'Vue':
-            console.log('vue');
+            window.open('https://vuejs.org')
             break
         case 'Svelte':
-            console.log('svelte');
+            window.open('https://svelte.dev')
             break
         case 'Solid':
-            console.log('solid');
+            window.open('https://www.solidjs.com')
             break
         case 'Angular':
-            console.log('Angular');
-
+            window.open('https://angular.io')
     }
 })
+
+function popupDesc(title: string): string {
+    if (title === 'React') return 'A JavaScript library for building user interfaces'
+    else if (title === 'Vue') return 'The Progressive JavaScript Framework'
+    else if (title === 'Svelte') return 'CYBERNETICALLY ENHANCED WEB APPS'
+    else if (title === 'Solid') return 'Simple and performant reactivity for building user interfaces.'
+    else if (title === 'Angular') return "The modern web developer's platform"
+    else return ''
+}
