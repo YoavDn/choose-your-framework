@@ -132,8 +132,14 @@ document.addEventListener('keyup', (e) => {
 const leftBtn = document.querySelector<HTMLButtonElement>('.left-btn')
 const rightBtn = document.querySelector<HTMLButtonElement>('.right-btn')
 const upBtn = document.querySelector<HTMLButtonElement>('.up-btn')
-leftBtn!.addEventListener('touchstart', () => move('left'))
-rightBtn!.addEventListener('touchstart', () => move('right'))
+leftBtn!.addEventListener('touchstart', (e) => {
+    e.preventDefault()
+    move('left')
+})
+rightBtn!.addEventListener('touchstart', (e) => {
+    e.preventDefault()
+    move('right')
+})
 rightBtn!.addEventListener('touchend', () => stop('right'))
 leftBtn!.addEventListener('touchend', () => stop('left'))
 upBtn!.addEventListener('touchstart', () => keys.up = true)
@@ -158,7 +164,7 @@ function openPopup(title: string) {
     document.querySelector<HTMLImageElement>('.popup-img')!.src = frameworkImgSrc(title)
     document.querySelector<HTMLButtonElement>('.to-website-btn')!.style.backgroundColor = `var(--${title.toLowerCase()}-clr)`
     document.querySelector<HTMLParagraphElement>('.popup-desc')!.innerText = popupDesc(title)
-    popupEl.classList.remove('hidden')
+    setTimeout(() => popupEl.classList.remove('hidden'))
 }
 
 

@@ -195,7 +195,7 @@ button {
   .popup {
     flex-direction: column;
     width: 300px;
-
+    top: 50%
   }
 
   .text {
@@ -213,7 +213,7 @@ button {
   }
 
   .help-popup {
-    top: 40%;
+    top: 50%;
   }
 
   .controlls-container {
@@ -243,7 +243,7 @@ button {
 
   .summery {
     display: grid;
-    grid-template-columns: auto minmax(0, 360px) auto;
+    grid-template-columns: 10px minmax(0, 360px) 10px;
     color: white;
   }
 }
