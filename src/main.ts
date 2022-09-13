@@ -53,12 +53,12 @@ function animate() {
     //check if on portal 
     if (portals.some(portal => {
         return window.innerWidth > 600 ? portal.position.x > 430 && portal.position.x < 500
-            : portal.position.x > 130 && portal.position.x < 200
+            : portal.position.x > 100 && portal.position.x < 200
     })) {
         const currPortal = portals.find(portal => {
             return window.innerWidth > 600
                 ? portal.position.x > 430 && portal.position.x < 500
-                : portal.position.x > 130 && portal.position.x < 200
+                : portal.position.x > 100 && portal.position.x < 200
         })
         if (keys.up) openPopup(currPortal!.title)
     }
@@ -88,7 +88,7 @@ function animate() {
         else if (keys.right && player.position.x < 900) player.position.x += 3
     }
     // console.log(background.position.x);
-    // console.log(portals[0].position.x);
+    console.log(portals[0].position.x);
 
 }
 animate()
