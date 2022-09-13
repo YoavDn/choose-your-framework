@@ -1,12 +1,16 @@
 // player images
+import playerWalkSrc from '../assets/player-walk.png'
+import playerWalkLeftSrc from '../assets/player-walk-left.png'
+import playerStandSrc from '../assets/player-stand.png'
+import playerStandLeftSrc from '../assets/player-stand-left.png'
 export const playerWalk = new Image()
-playerWalk.src = './src/assets/player-walk.png'
+playerWalk.src = playerWalkSrc
 
 export const playerWalkLeft = new Image()
-playerWalkLeft.src = './src/assets/player-walk-left.png'
+playerWalkLeft.src = playerWalkLeftSrc
 
 export const playerStand = new Image()
-playerStand.src = './src/assets/player-stand.png'
+playerStand.src = playerStandSrc
 
 export const playerStandLeft = new Image()
-playerStandLeft.src = './src/assets/player-stand-left.png'
+playerStandLeft.src = playerStandLeftSrc

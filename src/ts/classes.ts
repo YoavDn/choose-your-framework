@@ -1,5 +1,8 @@
 import { playerWalk, playerWalkLeft, playerStand, playerStandLeft } from './character'
+
 import { c } from '../main'
+
+
 type positionType = { x: number, y: number }
 
 export class Sprite {
@@ -11,7 +14,7 @@ export class Sprite {
     }
 
     draw() {
-        c?.drawImage(this.image, this.position.x, this.position.y)
+        c!.drawImage(this.image, this.position.x, this.position.y)
     }
 }
 

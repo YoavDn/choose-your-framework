@@ -1,9 +1,16 @@
 // import './style.css'
 import { playerStand } from './ts/character'
 import { Sprite, Player } from './ts/classes'
+import bgImgSrc from './assets/game-map.png'
+import reactImg from './assets/framework-imgs/reactjs.png'
+import vueImg from './assets/framework-imgs/vuejs.png'
+import svelteImg from './assets/framework-imgs/sveltejs.png'
+import solidImg from './assets/framework-imgs/solidjs.png'
+import angularImg from './assets/framework-imgs/angularjs.png'
 import { portals, } from './ts/portals'
 
-const canvas = document.getElementById('canvas') as HTMLCanvasElement
+
+export const canvas = document.getElementById('canvas') as HTMLCanvasElement
 export let c = canvas.getContext('2d')
 
 
@@ -15,10 +22,12 @@ c?.fillRect(0, 0, canvas.width, canvas.height)
 
 
 const bgImage = new Image()
-bgImage.src = "./src/assets/game-map.png"
+bgImage.src = bgImgSrc
+
 
 
 const background = new Sprite({ x: -100, y: -520 }, bgImage)
+
 const player = new Player(
     { x: (canvas.width / 2) - playerStand.width / 2, y: 375 },
     playerStand,
@@ -85,11 +94,7 @@ function animate() {
 animate()
 
 
-
-
 document.addEventListener('keydown', (e) => {
-    // console.log(e.key);
-
     switch (e.key) {
         case 'ArrowLeft':
             move('left')
@@ -135,8 +140,6 @@ upBtn!.addEventListener('touchstart', () => keys.up = true)
 upBtn!.addEventListener('touchend', () => keys.up = false)
 
 
-
-
 function move(dir: "left" | 'right') {
     dir === 'left' ? keys.left = true : keys.right = true
     player.isMoving = true
@@ -149,11 +152,10 @@ function stop(dir: 'left' | 'right') {
 }
 
 
-
 function openPopup(title: string) {
     const popupEl = document.querySelector('.popup') as HTMLDivElement
     document.querySelector<HTMLSpanElement>('.span-title')!.innerText = title
-    document.querySelector<HTMLImageElement>('.popup-img')!.src = `./src/assets/framework-imgs/${title.toLowerCase()}js.png`
+    document.querySelector<HTMLImageElement>('.popup-img')!.src = frameworkImgSrc(title)
     document.querySelector<HTMLButtonElement>('.to-website-btn')!.style.backgroundColor = `var(--${title.toLowerCase()}-clr)`
     document.querySelector<HTMLParagraphElement>('.popup-desc')!.innerText = popupDesc(title)
     popupEl.classList.remove('hidden')
@@ -195,6 +197,15 @@ function popupDesc(title: string): string {
     else if (title === 'Solid') return 'Simple and performant reactivity for building user interfaces.'
     else if (title === 'Angular') return "The modern web developer's platform"
     else return ''
+}
+
+function frameworkImgSrc(title: string): string {
+    if (title === 'React') return reactImg
+    else if (title === 'Vue') return vueImg
+    else if (title === 'Svelte') return svelteImg
+    else if (title === 'Solid') return solidImg
+    else if (title === 'Angular') return angularImg
+    return ''
 }
 
 document.querySelector('.help-btn')?.addEventListener('click', () => {
