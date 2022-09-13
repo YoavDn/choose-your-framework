@@ -7,8 +7,9 @@ const bgImage = new Image()
 bgImage.src = "/src/assets/game-map.png"
 
 const canvas = document.getElementById('canvas') as HTMLCanvasElement
-export const c = canvas.getContext('2d')
+export let c = canvas.getContext('2d')
 
+bgImage.onload = () => c = canvas.getContext('2d')
 
 canvas.width = window.innerWidth > 600 ? 960 : 360
 canvas.height = window.innerWidth > 600 ? 680 : 480
