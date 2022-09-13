@@ -94,14 +94,10 @@ document.addEventListener('keydown', (e) => {
 
     switch (e.key) {
         case 'ArrowLeft':
-            keys.left = true
-            player.isMoving = true
-            player.image = player.sprites.walkLeft
+            move('left')
             break
         case "ArrowRight":
-            player.isMoving = true
-            keys.right = true
-            player.image = player.sprites.walk
+            move('right')
             break
         case "ArrowUp":
             keys.up = true
@@ -117,17 +113,10 @@ document.addEventListener('keyup', (e) => {
     console.log(e.key);
     switch (e.key) {
         case 'ArrowLeft':
-            player.isMoving = false
-            keys.left = false
-            player.image = player.sprites.standLeft
-
+            stop('left')
             break
         case "ArrowRight":
-            player.isMoving = false
-            keys.right = false
-
-
-            player.image = player.sprites.stand
+            stop('right')
             break
         case "ArrowUp":
             keys.up = false
@@ -138,6 +127,31 @@ document.addEventListener('keyup', (e) => {
 
     }
 })
+
+const leftBtn = document.querySelector<HTMLButtonElement>('.left-btn')
+const rightBtn = document.querySelector<HTMLButtonElement>('.right-btn')
+const upBtn = document.querySelector<HTMLButtonElement>('.up-btn')
+leftBtn!.addEventListener('touchstart', () => move('left'))
+rightBtn!.addEventListener('touchstart', () => move('right'))
+rightBtn!.addEventListener('touchend', () => stop('right'))
+leftBtn!.addEventListener('touchend', () => stop('left'))
+upBtn!.addEventListener('touchstart', () => keys.up = true)
+upBtn!.addEventListener('touchend', () => keys.up = false)
+
+
+
+
+function move(dir: "left" | 'right') {
+    dir === 'left' ? keys.left = true : keys.right = true
+    player.isMoving = true
+    player.image = dir === 'left' ? player.sprites.walkLeft : player.sprites.walk
+}
+function stop(dir: 'left' | 'right') {
+    player.isMoving = false
+    dir === 'left' ? keys.left = false : keys.right = false
+    player.image = dir === 'left' ? player.sprites.standLeft : player.sprites.stand
+}
+
 
 
 function openPopup(title: string) {
@@ -186,3 +200,11 @@ function popupDesc(title: string): string {
     else if (title === 'Angular') return "The modern web developer's platform"
     else return ''
 }
+
+document.querySelector('.help-btn')?.addEventListener('click', () => {
+    document.querySelector('.help-popup')?.classList.toggle('hidden')
+})
+
+document.querySelector('.help-popup button')?.addEventListener('click', () => {
+    document.querySelector('.help-popup')?.classList.add('hidden')
+})
